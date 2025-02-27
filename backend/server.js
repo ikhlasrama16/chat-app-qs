@@ -1,9 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const { chats } = require("./data/data-1.js");
+const connectDB = require("./config/db.js");
+const colors = require("colors");
 
 const app = express();
 dotenv.config();
+connectDB();
 
 app.get("/", (req, res) => {
   res.send("API is Running");
@@ -24,5 +27,5 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(
   5000,
-  console.log(`Server running on port http://localhost:${PORT}`)
+  console.log(`Server running on port http://localhost:${PORT}`.yellow.bold)
 );
