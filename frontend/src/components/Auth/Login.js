@@ -13,8 +13,8 @@ import { useHistory } from "react-router";
 import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [show, setShow] = useState();
   const [loading, setLoading] = useState(false);
   const toast = useToast();
@@ -34,6 +34,8 @@ const Login = () => {
       setLoading(false);
       return;
     }
+    console.log("Email:", email);
+    console.log("Password:", password);
     try {
       const config = {
         headers: {
@@ -72,7 +74,7 @@ const Login = () => {
 
   return (
     <VStack>
-      <FormControl id="email">
+      <FormControl id="email" isRequired>
         <FormLabel>Email</FormLabel>
         <Input
           placeholder="Enter Your Email"
@@ -81,12 +83,12 @@ const Login = () => {
         ></Input>
       </FormControl>
 
-      <FormControl id="password">
+      <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
         <InputGroup>
           <Input
             type={show ? "text" : "password"}
-            placeholder="Enter Your Email"
+            placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
@@ -112,7 +114,7 @@ const Login = () => {
         colorScheme="blue"
         style={{ marginTop: 5 }}
         onClick={() => {
-          setEmail("example@email.com");
+          setEmail("guest@mail.com");
           setPassword("password");
         }}
       >

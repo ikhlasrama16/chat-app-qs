@@ -14,13 +14,13 @@ import { useHistory } from "react-router";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmpassword, setConfirmpassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmpassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const toast = useToast();
-  const history = useHistory();
+  const toast = useToast("");
+  const history = useHistory("");
 
   const handleClick = () => setShow(!show);
   const submitHandler = async () => {
@@ -68,6 +68,7 @@ const Signup = () => {
       setLoading(false);
       history.push("/chats");
     } catch (error) {
+      console.log(error);
       toast({
         title: "Error occured",
         description: error.response.data.message,
@@ -103,7 +104,7 @@ const Signup = () => {
         <InputGroup>
           <Input
             type={show ? "text" : "password"}
-            placeholder="Enter your password"
+            placeholder="Enter password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
@@ -129,6 +130,7 @@ const Signup = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
+
       <Button
         width="100%"
         colorScheme="teal"
