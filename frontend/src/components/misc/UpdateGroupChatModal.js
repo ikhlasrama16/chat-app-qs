@@ -22,7 +22,7 @@ import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import axios from "axios";
 import UserListItem from "../userAvatar/UserListItem";
 
-function UpdateGroupChatModal({ fetchAgain, setFetchAgain }) {
+function UpdateGroupChatModal({ fetchAgain, setFetchAgain, fetchMessages }) {
   const [groupChatName, setGroupChatName] = useState();
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -64,7 +64,7 @@ function UpdateGroupChatModal({ fetchAgain, setFetchAgain }) {
 
       user1._id === user._id ? setSelectedChat() : setSelectedChat(data);
       setFetchAgain(!fetchAgain);
-      //   fetchMessages();
+      fetchMessages();
       setLoading(false);
     } catch (error) {
       toast({
