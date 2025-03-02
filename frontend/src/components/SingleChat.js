@@ -20,7 +20,7 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import animationData from "../animation/typing.json";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://chat-app-qs.vercel.app";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
