@@ -20,8 +20,6 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const history = useHistory();
-  const baseURL =
-    process.env.NODE_ENV === "production" ? "/" : "http://localhost:5000";
 
   const { setUser } = ChatState();
   const handleClick = () => setShow(!show);
