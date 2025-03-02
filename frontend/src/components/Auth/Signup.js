@@ -21,6 +21,10 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const toast = useToast("");
   const history = useHistory("");
+  const baseURL =
+    process.env.NODE_ENV === "production"
+      ? "https://your-vercel-app.vercel.app"
+      : "http://localhost:5000";
 
   const handleClick = () => setShow(!show);
   const submitHandler = async () => {
@@ -53,8 +57,8 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/user",
-        { name, email, password },
+        `${baseURL}/api/user/login`,
+        { email, password },
         config
       );
       toast({
