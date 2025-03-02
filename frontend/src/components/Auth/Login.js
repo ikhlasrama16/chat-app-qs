@@ -11,6 +11,7 @@ import {
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
+import { ChatState } from "../../context/ChatProvider";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,12 +25,13 @@ const Login = () => {
       ? "https://your-vercel-app.vercel.app"
       : "http://localhost:5000";
 
+  const { setUser } = ChatState();
   const handleClick = () => setShow(!show);
   const submitHandler = async () => {
     setLoading(true);
     if (!email || !password) {
       toast({
-        title: "please fill all fields",
+        title: "Please Fill all the Feilds",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -38,36 +40,36 @@ const Login = () => {
       setLoading(false);
       return;
     }
-    console.log("Email:", email);
-    console.log("Password:", password);
+
     try {
       const config = {
         headers: {
           "Content-type": "application/json",
         },
       };
+
       const { data } = await axios.post(
-        `${baseURL}/api/user/login`,
+        "/api/user/login",
         { email, password },
         config
       );
 
       toast({
-        title: "Login successfull",
+        title: "Login Successful",
         status: "success",
         duration: 5000,
         isClosable: true,
         position: "bottom",
       });
+      setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       history.push("/chats");
     } catch (error) {
-      console.log(error); // Tambahkan ini untuk melihat detail error
       toast({
-        title: "Error occured",
+        title: "Error Occured!",
         description: error.response.data.message,
-        status: "warning",
+        status: "error",
         duration: 5000,
         isClosable: true,
         position: "bottom",
