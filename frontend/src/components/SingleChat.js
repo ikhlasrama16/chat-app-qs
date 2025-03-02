@@ -20,7 +20,7 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import animationData from "../animation/typing.json";
 
-const ENDPOINT = "https://chat-app-qs-production.up.railway.app/";
+const ENDPOINT = "https://chat-app-qs-production.up.railway.app";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
