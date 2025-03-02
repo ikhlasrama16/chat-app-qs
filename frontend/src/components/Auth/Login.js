@@ -47,7 +47,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        `${baseURL}/api/user/login`,
+        `/api/user/login`,
         { email, password },
         config
       );
@@ -65,7 +65,7 @@ const Login = () => {
       history.push("/chats");
     } catch (error) {
       toast({
-        title: "Error Occured!",
+        title: error.message,
         description: error.response.data.message,
         status: "error",
         duration: 5000,
