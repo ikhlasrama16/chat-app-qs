@@ -30,8 +30,7 @@ function UpdateGroupChatModal({ fetchAgain, setFetchAgain, fetchMessages }) {
   const [renameloading, setRenameLoading] = useState(false);
   const toast = useToast();
 
-  const { selectedChat, setSelectedChat, user, notification, setNotification } =
-    ChatState();
+  const { selectedChat, setSelectedChat, user } = ChatState();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleRemove = async (user1) => {
