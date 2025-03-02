@@ -8,14 +8,16 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
 
   return (
     <Box
-      d={{ base: selectedChat ? "flex" : "none", md: "flex" }}
+      display={{ base: selectedChat ? "flex" : "none", md: "flex" }}
       alignItems="center"
       flexDir="column"
-      p={3}
+      p={{ base: 2, md: 3 }}
       bg="beige"
       w={{ base: "100%", md: "68%" }}
       borderRadius="lg"
       borderWidth="1px"
+      h={{ base: "100vh", md: "auto" }} // Menyesuaikan tinggi untuk mobile
+      overflowY="auto" // Agar konten bisa di-scroll jika melebihi tinggi layar
     >
       <SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
     </Box>

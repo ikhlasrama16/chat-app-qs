@@ -25,7 +25,7 @@ const HomePage = () => {
   return (
     <Container maxW="xl" centerContent>
       <Box
-        d="flex"
+        display="flex"
         bg={"beige"}
         borderRadius="lg"
         p={3}
