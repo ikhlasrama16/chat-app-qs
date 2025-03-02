@@ -21,9 +21,7 @@ const Login = () => {
   const toast = useToast();
   const history = useHistory();
   const baseURL =
-    process.env.NODE_ENV === "production"
-      ? "https://your-vercel-app.vercel.app"
-      : "http://localhost:5000";
+    process.env.NODE_ENV === "production" ? "/" : "http://localhost:5000";
 
   const { setUser } = ChatState();
   const handleClick = () => setShow(!show);
