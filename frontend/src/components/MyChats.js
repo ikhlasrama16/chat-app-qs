@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { ChatState } from "../context/ChatProvider";
-import { Box, Button, Stack, Text, useToast } from "@chakra-ui/react";
-import axios from "axios";
-import ChatLoading from "./ChatLoading";
 import { AddIcon } from "@chakra-ui/icons";
-import { getSender } from "../config/ChatLogic";
-import GroupChatModal from "./misc/GroupChatModal";
+import { Box, Stack, Text } from "@chakra-ui/layout";
+import { useToast } from "@chakra-ui/toast";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { getSender } from "../config/ChatLogics";
+import ChatLoading from "./ChatLoading";
+import GroupChatModal from "./miscellaneous/GroupChatModal";
+import { Button } from "@chakra-ui/react";
+import { ChatState } from "../context/ChatProvider";
 
 const MyChats = ({ fetchAgain }) => {
-  const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState();
-
   const [loggedUser, setLoggedUser] = useState();
+
+  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
+
   const toast = useToast();
 
   const fetchChats = async () => {
@@ -24,7 +27,6 @@ const MyChats = ({ fetchAgain }) => {
 
       const { data } = await axios.get("/api/chat", config);
       setChats(data);
-      console.log(data);
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -49,7 +51,7 @@ const MyChats = ({ fetchAgain }) => {
       flexDir="column"
       alignItems="center"
       p={3}
-      bg="beige"
+      bg="white"
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
       borderWidth="1px"
@@ -59,7 +61,7 @@ const MyChats = ({ fetchAgain }) => {
         px={3}
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="poppins"
-        display="flex"
+        d="flex"
         w="100%"
         justifyContent="space-between"
         alignItems="center"
@@ -75,12 +77,11 @@ const MyChats = ({ fetchAgain }) => {
           </Button>
         </GroupChatModal>
       </Box>
-
       <Box
         display="flex"
         flexDir="column"
         p={3}
-        bg="beige"
+        bg="#F8F8F8"
         w="100%"
         h="100%"
         borderRadius="lg"
@@ -106,7 +107,7 @@ const MyChats = ({ fetchAgain }) => {
                 </Text>
                 {chat.latestMessage && (
                   <Text fontSize="xs">
-                    <b>{chat.latestMessage?.sender?.name} : </b>
+                    <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 50
                       ? chat.latestMessage.content.substring(0, 51) + "..."
                       : chat.latestMessage.content}
