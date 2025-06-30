@@ -8,10 +8,9 @@ import { getSender } from "../config/ChatLogic";
 import GroupChatModal from "./misc/GroupChatModal";
 
 const MyChats = ({ fetchAgain }) => {
+  const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState();
+
   const [loggedUser, setLoggedUser] = useState();
-
-  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-
   const toast = useToast();
 
   const fetchChats = async () => {
@@ -25,6 +24,7 @@ const MyChats = ({ fetchAgain }) => {
 
       const { data } = await axios.get("/api/chat", config);
       setChats(data);
+      console.log(data);
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -49,7 +49,7 @@ const MyChats = ({ fetchAgain }) => {
       flexDir="column"
       alignItems="center"
       p={3}
-      bg="white"
+      bg="beige"
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
       borderWidth="1px"
@@ -59,7 +59,7 @@ const MyChats = ({ fetchAgain }) => {
         px={3}
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="poppins"
-        d="flex"
+        display="flex"
         w="100%"
         justifyContent="space-between"
         alignItems="center"
@@ -75,11 +75,12 @@ const MyChats = ({ fetchAgain }) => {
           </Button>
         </GroupChatModal>
       </Box>
+
       <Box
         display="flex"
         flexDir="column"
         p={3}
-        bg="#F8F8F8"
+        bg="beige"
         w="100%"
         h="100%"
         borderRadius="lg"
