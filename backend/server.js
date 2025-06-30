@@ -58,7 +58,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://chat-app-qs.vercel.app",
+    origin: "https://chat-app-qs-production.up.railway.app",
     credentials: true,
   },
 });
